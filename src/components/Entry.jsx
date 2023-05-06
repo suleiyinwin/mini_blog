@@ -15,7 +15,7 @@ import Post from "./Post";
 import Grid from "@mui/material/Unstable_Grid2";
 import * as React from "react";
 
-import Login from "../Login";
+import Login from "./Login";
 
 export default function Entry() {
  
@@ -116,7 +116,7 @@ export default function Entry() {
               <Button sx={chips} onClick={handleOpen}>
                 Get Started
               </Button>
-              <Login setOpen={setOpen} open={open}/>
+              <Login setOpen={setOpen} open={open} />
             </Box>
           </Toolbar>
         </AppBar>
