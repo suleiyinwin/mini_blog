@@ -13,6 +13,7 @@ import {
   Typography,
 } from "@mui/material";
 import * as React from "react";
+
 const signButton = {
   backgroundColor: "#023047",
   "&:hover": {
@@ -35,7 +36,7 @@ const signField = {
 const modalStyle = {
   position: "absolute",
   bgcolor: "white",
-  height: { xs: "100%", md: "80%" },
+  height: { xs: "100%", md: "90%" },
   width: { xs: "100%", md: "60%" },
   top: "50%",
   left: "50%",
@@ -48,7 +49,7 @@ const headerTextStyle = {
   fontFamily: "Roboto",
   fontSize: { xs: "20px", md: "30px" },
 };
-export default function Login({ setOpen, open }) {
+export default function Login({ setOpen, open, handleOpen }) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const handleClose = () => {
@@ -83,10 +84,15 @@ export default function Login({ setOpen, open }) {
     }
   };
   //Sign Up
+  const [username, setUsername] = React.useState("");
   const [emailSignUp, setEmailSignUp] = React.useState("");
   const [passwordSignUp, setPasswordSignUp] = React.useState("");
+  const [confirmPassword, setConfirmPassword] = React.useState("");
   const handleSignupClose = () => {
     setSignUpOpen(false);
+  };
+  const handleUsernameChange = (event) => {
+    setUsername(event.target.value);
   };
   const handleSignUpEmailChange = (event) => {
     setEmailSignUp(event.target.value);
@@ -95,7 +101,19 @@ export default function Login({ setOpen, open }) {
   const handleSignUpPasswordChange = (event) => {
     setPasswordSignUp(event.target.value);
   };
+  const handleConfirmPasswordChange = (event) => {
+    setConfirmPassword(event.target.value);
+  };
+  // const [passwordError, setPasswordError] = React.useState("");
 
+  // const validatePassword = () => {
+  //   if (passwordSignUp !== confirmPassword) {
+  //     setPasswordError('Passwords do not match');
+  //     return false;
+  //   }
+  //   setPasswordError('');
+  //   return true;
+  // }
   const handleSignUp = () => {
     // Handle Signup logic here
   };
@@ -143,31 +161,15 @@ export default function Login({ setOpen, open }) {
               // variant="outlined"
             />
             <br></br>
-            <br />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={isChecked}
-                  onChange={handleCheck}
-                  color="primary"
-                />
-              }
-              label="By creating an account you agree to the terms of use and our privacy and policy"
-              sx={signField}
-            />
-            <Box sx={signField}>
-              {hasError && (
-                <div style={{ color: "red" }}>Please check the box</div>
-              )}
-            </Box>
-            <br />
-            <br />
+            <br/>
+            
             <Button type="submit" onClick={handleLogin} sx={signButton}>
               Login
             </Button>
+            <br/>
             <br />
             <Box sx={signField}>
-              Have already an account?
+              Don't you have an account?
               <p
                 style={{ color: "#306AFF" }}
                 onClick={() => {
@@ -192,6 +194,90 @@ export default function Login({ setOpen, open }) {
             <Typography sx={headerTextStyle} style={{ textAlign: "center" }}>
               Join Us
             </Typography>
+            <form onSubmit={handleSubmit}>
+              <TextField
+                sx={signField}
+                style={{ backgroundColor: "#F0F0F0" }}
+                label="Username"
+                value={username}
+                onChange={handleUsernameChange}
+                fullWidth
+                margin="normal"
+                // variant="outlined"
+              />
+              <TextField
+                sx={signField}
+                style={{ backgroundColor: "#F0F0F0" }}
+                label="Email"
+                value={emailSignUp}
+                onChange={handleSignUpEmailChange}
+                fullWidth
+                margin="normal"
+                // variant="outlined"
+              />
+              <TextField
+                sx={signField}
+                label="Password"
+                type="password"
+                style={{ backgroundColor: "#F0F0F0" }}
+                value={passwordSignUp}
+                onChange={handleSignUpPasswordChange}
+                fullWidth
+                margin="normal"
+                // variant="outlined"
+              />
+              <TextField
+              fullWidth
+              margin="normal"
+                sx={signField}
+                style={{ backgroundColor: "#F0F0F0" }}
+                id="confirm-password"
+                label="Confirm Password"
+                type="password"
+                value={confirmPassword}
+                onChange={handleConfirmPasswordChange}
+              />
+              <br></br>
+              <br />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={isChecked}
+                    onChange={handleCheck}
+                    color="primary"
+                  />
+                }
+                label="By creating an account you agree to the terms of use and our privacy and policy"
+                sx={signField}
+              />
+              <Box sx={signField}>
+                {hasError && (
+                  <div style={{ color: "red" }}>Please check the box</div>
+                )}
+              </Box>
+              <br />
+              <br />
+              <Button type="submit" onClick={handleLogin} sx={signButton}>
+                Register
+              </Button>
+              <Box sx={signField}>
+                {/* {passwordError && <Typography color="error">{passwordError}</Typography>} */}
+              </Box>
+              <br />
+              <Box sx={signField}>
+                Have already an account?
+                <p
+                  style={{ color: "#306AFF" }}
+                  onClick={() => {
+                    handleOpen();
+                  }}
+                >
+                  Login
+                </p>
+              </Box>
+              <br />
+              <br />
+            </form>
           </Box>
         </Modal>
       </Box>

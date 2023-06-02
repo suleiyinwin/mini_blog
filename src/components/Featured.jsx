@@ -1,7 +1,9 @@
-import { Box} from "@mui/material";
-import PostComponent from "./PostComponent";
+import { Box } from "@mui/material";
+import FeaturedComponent from "./FeaturedComponent";
 import Grid from '@mui/material/Unstable_Grid2';
-export default function Post({handleClick}){
+
+export default function Featured()
+{
   const posts = [
     {
       image: "./assets/1.jpeg",
@@ -32,16 +34,18 @@ export default function Post({handleClick}){
       date: "April 12 2023",
     },
   ];
-
-    return (
+    
+    return(
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={{ xs: 2, md: 3 }} >
             {posts.map((el, index) => (
               <Grid xs={12} md={6} key={index}>
-                <PostComponent posts={el} handleClick={handleClick} />
+                <FeaturedComponent posts={el} />
               </Grid>
             ))}
           </Grid>
         </Box>
-      );
+        
+ 
+    )
 }

@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import Category from "./Category";
 
-export default function CategoryComponent({cat}){
+export default function CategoryComponent({cat,handleClick}){
     const category = {
         backgroundColor: "#F0F0F0",
         "&:hover": {
@@ -17,7 +17,8 @@ export default function CategoryComponent({cat}){
       };
       return(
         <>
-            <Button sx={category}>{cat}</Button>
+            <Button onClick={handleClick}  sx={category}>{cat}</Button>
+            
         </>
             
       )

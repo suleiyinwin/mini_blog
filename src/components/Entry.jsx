@@ -18,6 +18,14 @@ import * as React from "react";
 import Login from "./Login";
 
 export default function Entry() {
+  const [loggedIn, setLoggedIn] = React.useState(false);
+  const handleClick = () => {
+    if (!loggedIn) {
+      alert('You must be logged in to perform this action.');
+    } else {
+      // Handle button click for logged-in users
+    }
+  };
  
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
@@ -112,11 +120,11 @@ export default function Entry() {
             <Box sx={{ flexGrow: 1 }}>
               <img src="./assets/logo1.svg" />
             </Box>
-            <Box style={{ padding: "0 5% 0 0" }}>
+            <Box style={{ padding: "0 5% 0 0" }}> 
               <Button sx={chips} onClick={handleOpen}>
                 Get Started
               </Button>
-              <Login setOpen={setOpen} open={open} />
+              <Login handleOpen={handleOpen} setOpen={setOpen} open={open} />
             </Box>
           </Toolbar>
         </AppBar>
@@ -131,7 +139,7 @@ export default function Entry() {
                 Lorem ipsum dolor sit amet consectetur. Risus risus pellentesque
                 dictum pellentesque ornare aenean purus risus facilisi.Lorem
                 ipsum dolor sit amet consectetur. Risus risus pellentesque
-                dictum pellentesque ornare aenean purus risus facilisi.{" "}
+                dictum pellentesque ornare aenean purus risus facilisi.
               </Typography>
             </Grid>
             <Grid item sx={{ display: { xs: "none", md: "block" } }} md={5}>
@@ -143,9 +151,10 @@ export default function Entry() {
           </Grid>
           <br />
           <br />
-          <Button sx={chips} theme={theme}>
+          <Button sx={chips} theme={theme} onClick={handleOpen}>
             Start Reading
           </Button>
+          <Login handleOpen={handleOpen} setOpen={setOpen} open={open} />
         </Box>
       </ThemeProvider>
       <ThemeProvider theme={theme}>
@@ -164,10 +173,10 @@ export default function Entry() {
               What is your interest today?
             </Typography>
             <br />
-            <Category cat={cat} />
+            <Category cat={cat} handleClick={handleClick} />
           </Grid>
           <Grid item md={8} xs={12} style={{ padding: "5% 6%" }}>
-            <Post posts={posts} />
+            <Post handleClick={handleClick}/>
           </Grid>
           <Grid
             item
@@ -179,7 +188,7 @@ export default function Entry() {
               What is your interest today?
             </Typography>
             <br />
-            <Category cat={cat} />
+            <Category cat={cat}handleClick={handleClick} />
           </Grid>
         </Grid>
       </ThemeProvider>

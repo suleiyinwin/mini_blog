@@ -1,10 +1,10 @@
 import './Entry'
 import CategoryComponent from './CategoryComponent';
 
-export default function Category({cat}){
+export default function Category({cat,handleClick}){
     const obj=cat.map((el)=> {
         return(
-            <CategoryComponent cat={el} />
+            <CategoryComponent cat={el} handleClick={handleClick} />
         );
     })
     return(
